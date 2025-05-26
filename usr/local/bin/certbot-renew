@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -e
+
+CF_CREDENTIALS_FILE="${CF_CREDENTIALS_FILE:-/etc/certbot/cloudflare.ini}"
+CF_PROPAGATION_SECONDS="${CF_PROPAGATION_SECONDS:-60}"
+LETSENCRYPT_DIR="${LETSENCRYPT_DIR:-/etc/letsencrypt}"
+
+shutdown() {
+    kill -TERM 1
+    exit 1
+}
+
+if [ ! -f "$CF_CREDENTIALS_FILE" ]; then
+    echo "ERROR $CF_CREDENTIALS_FILE file not found"
+    shutdown
+fi
+
+if [ -z "$CF_EMAIL" ]; then
+    echo "ERROR 'CF_EMAIL' environment variable undefined"
+    shutdown
+fi
+
+if [ -z "$DOMAINS" ]; then
+    echo "ERROR 'DOMAINS' environment variable undefined"
+    shutdown
+fi
+
+echo "INFO Starting SSL certificates check / renew..."
+certbot certonly \
+    --dns-cloudflare \
+    --dns-cloudflare-credentials "$CF_CREDENTIALS_FILE" \
+    --dns-cloudflare-propagation-seconds "$CF_PROPAGATION_SECONDS" \
+    --email "$CF_EMAIL" \
+    --agree-tos \
+    --no-eff-email \
+    --keep-until-expiring \
+    --deploy-hook "$DEPLOY_HOOK" \
+    $(for domain in $DOMAINS; do echo "--domain $domain"; done)
+echo "INFO SSL certificates check / renew done"
+
