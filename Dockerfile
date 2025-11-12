@@ -1,4 +1,4 @@
-FROM scalified/cron:1.37.0
+FROM scalified/cron
 
 LABEL maintainer="Scalified <scalified@gmail.com>"
 
@@ -8,6 +8,4 @@ RUN apk add --update --no-cache certbot \
 
 RUN echo "CERTBOT VERSIONS: $(apk list | grep certbot)"
 
-COPY init.d/ /init.d/
-COPY usr/ /usr/
-
+COPY rootfs /

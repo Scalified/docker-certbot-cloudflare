@@ -1,8 +1,8 @@
 # Certbot Cloudflare Docker Image
 
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Scalified/docker-certbot-cloudflare/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/v/release/Scalified/docker-certbot-cloudflare?style=flat-square)](https://github.com/Scalified/docker-certbot-cloudflare/releases/latest)
 [![Docker Pulls](https://img.shields.io/docker/pulls/scalified/certbot-cloudflare.svg)](https://hub.docker.com/r/scalified/certbot-cloudflare)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Scalified/docker-certbot-cloudflare/blob/master/LICENSE)
 
 ## Overview
 
@@ -46,9 +46,6 @@ docker run \
 | `DEPLOY_HOOK`           | Shell command to run once per successfully issued certificate                                   |                               |
 | `CERTBOT_CRON_SCHEDULE` | **CRON** expression that defines when to run the Certbot renewal                                | `27 1 * * *`                  |
 
-## Scalified Links
+---
 
-* [Scalified](http://www.scalified.com)
-* [Scalified Official Facebook Page](https://www.facebook.com/scalified)
-* <a href="mailto:info@scalified.com?subject=[Docker Certbot Cloudflare]: Proposals And Suggestions">Scalified Support</a>
-
+**Made with ❤️ by [Scalified](http://www.scalified.com)**
