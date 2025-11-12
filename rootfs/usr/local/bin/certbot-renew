@@ -37,5 +37,5 @@ certbot certonly \
     --keep-until-expiring \
     --deploy-hook "$DEPLOY_HOOK" \
     $(for domain in $DOMAINS; do echo "--domain $domain"; done)
+chmod 0755 "$LETSENCRYPT_DIR/archive" "$LETSENCRYPT_DIR/live"
 echo "INFO SSL certificates check / renew done"
-
